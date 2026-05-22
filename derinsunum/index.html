@@ -1,0 +1,2408 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atık Su Takip Sistemi — Profesyonel Sunum 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Outfit', sans-serif
+    }
+
+    .wrap {
+      width: 100vw;
+      height: 100vh;
+      position: relative
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .9s ease;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0
+    }
+
+    .ov {
+      position: absolute;
+      inset: 0;
+      z-index: 1
+    }
+
+    .cnt {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      padding: 50px 60px
+    }
+
+    /* HYBRID LAYOUT */
+    .hybrid {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+      width: 100%
+    }
+
+    .hl {
+      flex: 1.1
+    }
+
+    .hr {
+      flex: .9
+    }
+
+    /* LEFT SIDE */
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: 50px;
+      padding: 8px 24px;
+      font-size: .92rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px
+    }
+
+    .hl h2 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, .35)
+    }
+
+    .hl h2 em {
+      font-style: normal;
+      color: #90E0EF
+    }
+
+    .lede {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, .9);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 580px
+    }
+
+    .bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 16px
+    }
+
+    .bullet {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start
+    }
+
+    .b-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    .b-text {}
+
+    .b-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3
+    }
+
+    .b-desc {
+      font-size: .95rem;
+      color: rgba(255, 255, 255, .72);
+      line-height: 1.5;
+      margin-top: 4px
+    }
+
+    /* RIGHT SIDE */
+    .panel {
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 24px;
+      padding: 32px
+    }
+
+    .panel-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .65);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px
+    }
+
+    .stat-big {
+      font-size: 4.8rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px
+    }
+
+    .stat-big em {
+      font-style: normal;
+      color: #90E0EF;
+      font-size: 3rem
+    }
+
+    .stat-unit {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: 20px
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, .12);
+      margin: 18px 0
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .ms {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 14px;
+      padding: 14px
+    }
+
+    .ms-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #90E0EF;
+      line-height: 1
+    }
+
+    .ms-label {
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 3px;
+      line-height: 1.3
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .fi {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start
+    }
+
+    .fi-icon {
+      font-size: 1.7rem;
+      flex-shrink: 0
+    }
+
+    .fi-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px
+    }
+
+    .fi-desc {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.45
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .sl {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start
+    }
+
+    .sl-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00B4D8, #0077B6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .sl-content {}
+
+    .sl-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .sl-desc {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 2px;
+      line-height: 1.4
+    }
+
+    .formula-box {
+      background: rgba(0, 0, 0, .25);
+      border: 1px solid rgba(144, 224, 239, .3);
+      border-radius: 16px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      text-align: center
+    }
+
+    .formula {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5
+    }
+
+    .formula span {
+      color: #90E0EF
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .85)
+    }
+
+    .comp-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .comp {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 12px;
+      padding: 12px 16px
+    }
+
+    .comp-icon {
+      font-size: 1.7rem;
+      flex-shrink: 0
+    }
+
+    .comp-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .comp-sub {
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 1px;
+      line-height: 1.3
+    }
+
+    /* PROGRESS + NAV */
+    .pbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #00B4D8, #0077B6, #48CAE4);
+      z-index: 300;
+      transition: width .6s;
+      box-shadow: 0 0 10px rgba(0, 180, 216, .5)
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(10, 20, 40, .55);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 50px;
+      padding: 9px 22px;
+      z-index: 200
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .3);
+      cursor: pointer;
+      transition: all .3s
+    }
+
+    .dot.active {
+      background: #fff;
+      transform: scale(1.5)
+    }
+
+    .nbtn {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, .7);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 2px 8px;
+      transition: color .2s
+    }
+
+    .nbtn:hover {
+      color: #fff
+    }
+
+    .ctr {
+      position: fixed;
+      top: 20px;
+      right: 28px;
+      color: rgba(255, 255, 255, .6);
+      font-size: 1.05rem;
+      font-weight: 600;
+      z-index: 200;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, .4)
+    }
+
+    #fullscreenBtn {
+      position: fixed;
+      top: 20px;
+      left: 28px;
+      z-index: 200;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .25);
+      color: rgba(255, 255, 255, .8);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #fullscreenBtn:hover {
+      background: rgba(255, 255, 255, .2);
+      color: #fff;
+      border-color: rgba(255, 255, 255, .35);
+    }
+
+    /* COVER SLIDE */
+    .cover-cnt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 900px
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 50px;
+      padding: 10px 32px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px
+    }
+
+    .cover-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.12;
+      text-shadow: 0 2px 30px rgba(0, 0, 0, .4);
+      margin-bottom: 18px
+    }
+
+    .cover-title em {
+      font-style: normal;
+      color: #90E0EF
+    }
+
+    .cover-sub {
+      font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+      color: rgba(255, 255, 255, .85);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 780px
+    }
+
+    .chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, .13);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 30px;
+      padding: 8px 22px;
+      font-size: .95rem;
+      font-weight: 600;
+      color: #fff
+    }
+
+    /* CLOSING SLIDE */
+    .close-cnt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 800px
+    }
+
+    .close-title {
+      font-size: clamp(3.2rem, 6vw, 5.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
+      margin-bottom: 16px
+    }
+
+    .close-title em {
+      font-style: normal;
+      color: #90E0EF
+    }
+
+    .close-sub {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, .85);
+      line-height: 1.75;
+      margin-bottom: 34px;
+      max-width: 720px
+    }
+
+    .close-chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 36px
+    }
+
+    .cc {
+      background: rgba(255, 255, 255, .13);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 50px;
+      padding: 12px 28px;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600
+    }
+
+    .close-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .btn-a {
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: 50px;
+      padding: 13px 32px;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      font-family: Outfit, sans-serif;
+      transition: background .2s
+    }
+
+    .btn-a:hover {
+      background: rgba(255, 255, 255, .28)
+    }
+
+    .btn-b {
+      background: linear-gradient(135deg, #00B4D8, #0077B6);
+      border: none;
+      border-radius: 50px;
+      padding: 13px 32px;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      font-family: Outfit, sans-serif;
+      box-shadow: 0 4px 20px rgba(0, 119, 182, .4)
+    }
+
+    /* PRINT (PDF) AYARLARI */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      @page {
+        size: 1920px 1080px;
+        /* Tam HD ekran boyutu, sığdırma sorunu olmaması için */
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 1920px !important;
+        height: 1080px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background-color: #000 !important;
+      }
+
+      .wrap {
+        position: static !important;
+        width: 1920px !important;
+        height: auto !important;
+        display: block !important;
+        overflow: visible !important;
+      }
+
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 1920px !important;
+        height: 1080px !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
+        transform: none !important;
+      }
+
+      .nav,
+      .pbar,
+      .ctr,
+      .close-btns,
+      #fullscreenBtn {
+        display: none !important;
+      }
+    }
+
+    /* MOBİL UYUM (RESPONSIVE) AYARLARI */
+    @media (max-width: 992px) {
+      .slide {
+        display: block !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .cnt {
+        padding: 50px 20px 80px 20px !important;
+        height: auto !important;
+        display: block !important;
+      }
+
+      .hybrid {
+        flex-direction: column !important;
+        gap: 30px !important;
+      }
+
+      .hl,
+      .hr {
+        flex: none !important;
+        width: 100% !important;
+      }
+
+      .cover-title {
+        font-size: 3.2rem !important;
+      }
+
+      .close-title {
+        font-size: 3rem !important;
+      }
+
+      .stat-big {
+        font-size: 3.8rem !important;
+      }
+
+      .stat-big em {
+        font-size: 2.4rem !important;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      /* Videolar (Slide 4.5) */
+      div[style*="gap:30px;justify-content:center"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+      }
+
+      /* Dashboard Sidebar ve İçerik */
+      div[style*="height:480px"] {
+        height: auto !important;
+        flex-direction: column !important;
+      }
+
+      div[style*="width:240px"] {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+      }
+
+      /* Yan yana iki panel (Slide 14, 15, 16) */
+      div[style*="gap:24px;height:100%"] {
+        flex-direction: column !important;
+        height: auto !important;
+      }
+
+      /* Dashboard KPI 4'lü Kutu */
+      div[style*="grid-template-columns:repeat(4,1fr)"] {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      /* Dashboard Aktif Operasyon */
+      div[style*="border:1px solid rgba(16,185,129,0.2)"] {
+        flex-direction: column !important;
+        text-align: center !important;
+      }
+
+      div[style*="border:1px solid rgba(16,185,129,0.2)"]>div:last-child {
+        width: 100% !important;
+      }
+
+      /* Raporlama Filtreleri */
+      div[style*="display:flex;gap:16px"] {
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+
+      /* Raporlama Tablosu */
+      div[style*="grid-template-columns:1fr 1.5fr 1fr 1fr 1fr"],
+      div[style*="grid-template-columns:1.5fr 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+        margin-bottom: 15px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        align-items: flex-start !important;
+      }
+
+      /* Tablo başlık satırını gizle */
+      div[style*="grid-template-columns:1fr 1.5fr 1fr 1fr 1fr"]:first-child,
+      div[style*="grid-template-columns:1.5fr 1fr 1fr"]:first-child {
+        display: none !important;
+      }
+
+      .nav {
+        bottom: 15px !important;
+        padding: 8px 16px !important;
+        width: 90% !important;
+        border-radius: 20px !important;
+      }
+
+      #dots {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+      }
+
+      .ctr {
+        top: 15px !important;
+        right: 15px !important;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 4px 10px;
+        border-radius: 10px;
+      }
+
+      #fullscreenBtn {
+        top: 15px !important;
+        left: 15px !important;
+        padding: 4px 10px !important;
+        border-radius: 10px !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pbar" id="prog"></div>
+  <button id="fullscreenBtn">📺 Tam Ekran</button>
+  <div class="ctr" id="ctr">1 / 17</div>
+  <div class="wrap" id="app">
+    <!-- SLIDE 1: KAPAK -->
+    <div class="slide active" id="s1">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1670138981446-24be2030e46a?w=1920&q=80')"></div>
+      <div class="ov"
+        style="background:linear-gradient(135deg,rgba(0,50,100,.82) 0%,rgba(0,100,170,.65) 50%,rgba(0,160,210,.55) 100%)">
+      </div>
+      <div class="cnt" style="display:flex;justify-content:center">
+        <div class="cover-cnt">
+          <div class="cover-badge">🌊 2026 — IoT Tabanlı Akıllı Liman Çözümü</div>
+          <h1 class="cover-title">Gemi Atık Yönetiminde<br><em>Akıllı Takip</em> ve<br>Otomatik Fiyatlandırma</h1>
+          <p class="cover-sub">Tescilli Kripto-Sinyal, Kopyalanamaz Uzak Mesafe Telemetrisi ve Hassas Ölçüm teknolojilerini Firebase bulut altyapısıyla birleştiren; kopyalanma ve tersine mühendisliğe karşı donanım düzeyinde korumalı, uçtan uca dijital liman çözümü.</p>
+          <div class="chips">
+            <span class="chip">📡 Kriptolu Telemetri Ağı</span>
+            <span class="chip">💳 Tescilli Yakınlık Doğrulama</span>
+            <span class="chip">🔒 Donanımsal Şifreleme</span>
+            <span class="chip">☁️ Güvenli Bulut Altyapısı</span>
+            <span class="chip">🌿 MARPOL Uyumlu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: NEDEN BU SİSTEM -->
+    <div class="slide" id="s2">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1618317497044-cf78ada06f92?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(20,30,60,.88),rgba(0,80,140,.75))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">⚠️ Mevcut Durum</span>
+            <h2>Neden Bu Sistem <em>Gerekli?</em></h2>
+            <p class="lede">Limanlarda atık yönetimi büyük ölçüde manuel süreçlere bağlıdır. Bu durum sistematik
+              hatalara zemin hazırlamakta, çevresel riskleri artırmakta ve liman gelirlerini ciddi ölçüde olumsuz
+              etkilemektedir. İşte temel sorunlar:</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">📋</div>
+                <div class="b-text">
+                  <div class="b-title">Takip Edilemeyen Atık Boşaltımları</div>
+                  <div class="b-desc">Kim, ne zaman, ne kadar boşalttı? Bu soruların yanıtları yetersiz kalıyor. Gemi
+                    atık boşaltımları kayıt dışı kalabiliyor, sistemsiz bir süreç işliyor.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">✏️</div>
+                <div class="b-text">
+                  <div class="b-title">Manuel Kayıt Hataları ve Manipülasyon Riski</div>
+                  <div class="b-desc">Kağıt tabanlı MARPOL kayıt defterleri hatalı, eksik veya kasıtlı olarak manipüle
+                    edilebilir nitelikte. Denetim güçlüğü bu riski artırıyor.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🚫</div>
+                <div class="b-text">
+                  <div class="b-title">Kaçak Boşaltım ve Çevre Kirliliği Riski</div>
+                  <div class="b-desc">Denetimsiz süreçler yasadışı boşaltıma kapı aralıyor. Deniz ekosistemi sessizce
+                    kirleniyor, cezasız kalan ihlaller artmaya devam ediyor.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">💸</div>
+                <div class="b-text">
+                  <div class="b-title">Şeffaf Olmayan ve Tartışmalı Fiyatlandırma</div>
+                  <div class="b-desc">Subjektif ücretlendirme liman ile gemi arasında anlaşmazlıklara neden oluyor. Ne
+                    ölçüldü, nasıl hesaplandı soruları yanıtsız kalıyor.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Sistemin Etkisi</div>
+              <div class="stat-big">4<em> Kritik</em></div>
+              <div class="stat-unit">Çözülmesi Gereken Sorun Alanı</div>
+              <div class="divider"></div>
+              <div class="mini-stats">
+                <div class="ms">
+                  <div class="ms-num">🌊</div>
+                  <div class="ms-label">Çevre Kirliliği Riski</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">📉</div>
+                  <div class="ms-label">Gizli Gelir Kayıpları</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">🔍</div>
+                  <div class="ms-label">Denetim Güçlüğü</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">⚖️</div>
+                  <div class="ms-label">Hukuki Uyumsuzluk</div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.55">Bu sorunların tamamı tek bir
+                entegre sistem ile çözülmektedir. Manuel süreçlerin yerini tam otomasyon alır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: ÇÖZÜM -->
+    <div class="slide" id="s3">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1614568111194-3c251800e81e?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(160deg,rgba(0,70,50,.87),rgba(0,130,100,.72))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">✅ Çözüm</span>
+            <h2>IoT Tabanlı <em>Akıllı Atık</em><br>Takip Sistemi</h2>
+            <p class="lede">Gemi yanaşmasından başlayan, kimlik tanımayla devam eden, flowmetre ölçümüyle tamamlanan ve
+              tüm verilerin anında buluta kaydedildiği uçtan uca otomatik bir sistem sunuyoruz. Operatörün tek yapması
+              gereken onay vermek.</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">📡</div>
+                <div class="b-text">
+                  <div class="b-title">Kripto-Sinyal ile Kablosuz Kimlik Tanımlama</div>
+                  <div class="b-desc">Kopyalanamaz, dinamik şifreli yakınlık sinyali ile gemi limana yanaşır yanaşmaz sistem otomatik olarak aktive olur. Sinyal kopyalama veya taklit edilmeye karşı tam donanım korumalıdır.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🔌</div>
+                <div class="b-text">
+                  <div class="b-title">IP68 Korumalı Akıllı Kaplin Sistemi</div>
+                  <div class="b-desc">Su geçirmez, kırılmaz endüstriyel kaplin ile hortum bağlantısı otomatik algılanır.
+                    Sensör verisi anlık iletilir.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">📏</div>
+                <div class="b-text">
+                  <div class="b-title">Hassas Flowmetre ile Gerçek Zamanlı Ölçüm</div>
+                  <div class="b-desc">Her saniye güncellenen debi ve hacim verileri. Atık türü sisteme iletilir,
+                    fiyatlandırma otomatik hesaplanır.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">☁️</div>
+                <div class="b-text">
+                  <div class="b-title">Anlık Bulut Kaydı ve Web Dashboard</div>
+                  <div class="b-desc">Tüm işlem verileri Firebase'e anlık aktarılır. Web ve mobil üzerinden her yerden
+                    erişilebilir raporlama ve yönetim.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Sistem Bileşenleri</div>
+              <div class="feature-list">
+                <div class="fi">
+                  <div class="fi-icon">🚢</div>
+                  <div>
+                    <div class="fi-title">Gemi Modülü</div>
+                    <div class="fi-desc">Kopyalanamaz donanım kilitli güvenlik çipi ve şifreli kablosuz kimlik tanımlama ünitesi.</div>
+                  </div>
+                </div>
+                <div class="fi">
+                  <div class="fi-icon">🏗️</div>
+                  <div>
+                    <div class="fi-title">Liman İstasyonu</div>
+                    <div class="fi-desc">Tersine mühendisliğe karşı yazılımsal ve donanımsal korumalı, hassas debi verilerini buluta şifreli aktaran ana ünite.</div>
+                  </div>
+                </div>
+                <div class="fi">
+                  <div class="fi-icon">🌐</div>
+                  <div>
+                    <div class="fi-title">Web Yönetim Paneli</div>
+                    <div class="fi-desc">Rol tabanlı erişim, canlı dashboard, raporlama, gemi/liman/kullanıcı yönetimi.
+                    </div>
+                  </div>
+                </div>
+                <div class="fi">
+                  <div class="fi-icon">☁️</div>
+                  <div>
+                    <div class="fi-title">Bulut Altyapısı</div>
+                    <div class="fi-desc">Gerçek zamanlı veri senkronizasyonu, kimlik doğrulama ve şifrelenmiş güvenli
+                      depolama.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: NASIL ÇALIŞIR -->
+    <div class="slide" id="s4">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1606185540834-d6e7483ee1a4?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(0,40,90,.88),rgba(0,90,150,.75))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">⚙️ İş Akışı</span>
+            <h2>Sistem Nasıl <em>Çalışır?</em></h2>
+            <p class="lede">Tüm süreç 7 adımda tamamen otomatik işler. Operatörün yalnızca 4. adımda onay tuşuna basması
+              yeterlidir. Geri kalan her aşama sistem tarafından sensörler ve yazılım aracılığıyla yönetilir. Ortalama
+              toplam işlem süresi sadece 3 dakikadır.</p>
+            <div class="step-list">
+              <div class="sl">
+                <div class="sl-num">1</div>
+                <div class="sl-content">
+                  <div class="sl-title">Gemi Limana Yanaşır</div>
+                  <div class="sl-desc">Tescilli kripto-sinyal algılanır, sistem otomatik olarak güvenli kanaldan aktive olur ve gemi sorgulanır.</div>
+                </div>
+              </div>
+              <div class="sl">
+                <div class="sl-num">2</div>
+                <div class="sl-content">
+                  <div class="sl-title">Otomatik Kimlik Tanıma ve Eşleştirme</div>
+                  <div class="sl-desc">Klonlanamaz donanımsal kimlik modülü üzerinden gemi kimliği doğrulanır. Bilgiler güvenli bulut üzerinde açılır.</div>
+                </div>
+              </div>
+              <div class="sl">
+                <div class="sl-num">3</div>
+                <div class="sl-content">
+                  <div class="sl-title">Hortum Bağlantısı Algılanır</div>
+                  <div class="sl-desc">Akıllı kaplin sensörü hortumun takıldığını tespit eder, atık transferine hazır
+                    duruma geçilir.</div>
+                </div>
+              </div>
+              <div class="sl">
+                <div class="sl-num">4</div>
+                <div class="sl-content">
+                  <div class="sl-title">Operatör Panelden Onay Verir</div>
+                  <div class="sl-desc">Liman görevlisi web panelinden veya fiziksel butondan transfer işlemini başlatır.
+                  </div>
+                </div>
+              </div>
+              <div class="sl">
+                <div class="sl-num">5</div>
+                <div class="sl-content">
+                  <div class="sl-title">Atık Transferi Başlar, Pompa Çalışır</div>
+                  <div class="sl-desc">Vana röle sistemi aktive olur. Atık transferi başlar ve flowmetre ölçümü anlık
+                    izlenir.</div>
+                </div>
+              </div>
+              <div class="sl">
+                <div class="sl-num">6</div>
+                <div class="sl-content">
+                  <div class="sl-title">Hassas Flowmetre Ölçümü Yapılır</div>
+                  <div class="sl-desc">Her saniye güncellenen m³ değerleri kaydedilir. Atık türü operatör tarafından
+                    seçilir.</div>
+                </div>
+              </div>
+              <div class="sl">
+                <div class="sl-num">7</div>
+                <div class="sl-content">
+                  <div class="sl-title">Veriler Otomatik Kaydedilir ve Raporlanır</div>
+                  <div class="sl-desc">Tüm işlem Firebase'e aktarılır. Beyan formu otomatik oluşturulur, fatura
+                    hesaplanır.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Performans Verileri</div>
+              <div class="stat-big"><em>3</em></div>
+              <div class="stat-unit">Dakikada Tamamlanan İşlem Süresi</div>
+              <div class="divider"></div>
+              <div class="mini-stats">
+                <div class="ms">
+                  <div class="ms-num">%0</div>
+                  <div class="ms-label">Manuel Hata Oranı</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">7/24</div>
+                  <div class="ms-label">Kesintisiz İzleme</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">Geniş</div>
+                  <div class="ms-label">Kapsama Alanı</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">Anlık</div>
+                  <div class="ms-label">Veri Aktarımı</div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.55">İşlem başına insan müdahalesi
+                minimuma indirilmiştir. Tüm olaylar zaman damgalı ve değiştirilemez şekilde kayıt altına alınmaktadır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SLIDE: SAHADA İŞLEM NASIL BAŞLIYOR -->
+    <div class="slide">
+      <div class="bg" style="background-color:#0a0f1e"></div>
+      <div class="cnt"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px">
+        <div style="text-align:center;margin-bottom:40px">
+          <span class="eyebrow"
+            style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#34d399">🎥 Saha
+            Uygulaması</span>
+          <h2
+            style="font-size:clamp(2rem, 3.5vw, 2.8rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px">
+            Gerçekte İşlem<br><em>Nasıl Başlıyor?</em></h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:1.1rem;max-width:700px;margin:0 auto">Operatörün gemiye
+            hortumu bağlaması ve atık alım sürecinin elektronik olarak başlatılması.</p>
+        </div>
+
+        <div style="display:flex;gap:30px;justify-content:center;align-items:center;width:100%;max-width:1200px">
+          <div
+            style="flex:1;background:#1e293b;padding:24px;border-radius:20px;border:1px solid rgba(255,255,255,0.05);box-shadow:0 25px 50px rgba(0,0,0,0.5)">
+            <h3 style="color:#fff;font-size:1.3rem;margin-bottom:16px;text-align:center;font-weight:800">1. Hortum
+              Bağlantısı</h3>
+            <div
+              style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#000;aspect-ratio:16/9;width:100%;margin:0 auto;display:flex;justify-content:center">
+              <video src="../hortumtakilmaani.mp4" autoplay loop muted playsinline
+                style="width:100%;height:100%;object-fit:contain"></video>
+            </div>
+          </div>
+
+          <div
+            style="flex:1;background:#1e293b;padding:24px;border-radius:20px;border:1px solid rgba(255,255,255,0.05);box-shadow:0 25px 50px rgba(0,0,0,0.5)">
+            <h3 style="color:#fff;font-size:1.3rem;margin-bottom:16px;text-align:center;font-weight:800">2. İşlemin
+              Başlatılması</h3>
+            <div
+              style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#000;aspect-ratio:16/9;width:100%;margin:0 auto;display:flex;justify-content:center">
+              <video src="../atikbaslatmasüreci.mp4" autoplay loop muted playsinline
+                style="width:100%;height:100%;object-fit:contain"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: TOPLANAN VERİLER -->
+    <div class="slide" id="s6">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1561823534-dff6c95e0b77?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(0,50,90,.87),rgba(0,100,160,.74))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">📊 Veri Yönetimi</span>
+            <h2>Her Şey <em>Kayıt Altında,</em><br>Her Zaman Erişilebilir</h2>
+            <p class="lede">Sistem her atık alım işlemi için eksiksiz bir veri paketi oluşturur. Bu veriler
+              değiştirilemez şekilde bulutta saklanır; MARPOL denetimleri, liman raporları ve bakanlık bildirimleri için
+              anında kullanıma hazır hâle gelir.</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">💧</div>
+                <div class="b-text">
+                  <div class="b-title">Atık Miktarı — m³ Cinsinden Hassas Ölçüm</div>
+                  <div class="b-desc">Flowmetre tarafından saniyeden saniyeye kaydedilen hacim verisi. Transfer
+                    başlangıç, bitiş ve toplam değerleri ayrı ayrı saklanır.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🏷️</div>
+                <div class="b-text">
+                  <div class="b-title">Atık Türü — MARPOL Kategorisine Göre Sınıflandırma</div>
+                  <div class="b-desc">EK-I (Sintine/Atık Yağ), EK-IV (Pis Su), EK-V (Katı Atıklar) ayrı kategorilerde
+                    kayıt altına alınır. Karma atıklar da desteklenir.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🚢</div>
+                <div class="b-text">
+                  <div class="b-title">Gemi Kimliği — IMO, Bayrak, Mavi Kart, Kaptan</div>
+                  <div class="b-desc">Kriptolu yakınlık modülü veya şifreli temassız anahtar ile eşleştirilen gemi profili. IMO, Mavi Kart no ve yetkililer otomatik doğrulanır.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">👤</div>
+                <div class="b-text">
+                  <div class="b-title">Operatör Kimliği ve Zaman Damgası</div>
+                  <div class="b-desc">Hangi operatör, hangi limanda, kaçta onay verdi? Tüm olaylar UTC+3 zaman
+                    damgasıyla değiştirilemez log'a yazılır.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Her İşlemde Kaydedilen Veriler</div>
+              <div class="comp-row">
+                <div class="comp">
+                  <div class="comp-icon">📏</div>
+                  <div>
+                    <div class="comp-label">m³ Atık Miktarı</div>
+                    <div class="comp-sub">Anlık + Toplam + Ortalama debi</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🗂️</div>
+                  <div>
+                    <div class="comp-label">Atık Türü & MARPOL Eki</div>
+                    <div class="comp-sub">EK-I, EK-IV, EK-V sınıflandırması</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🕐</div>
+                  <div>
+                    <div class="comp-label">Başlangıç / Bitiş Zamanı</div>
+                    <div class="comp-sub">Saniye hassasiyetinde zaman damgası</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🚢</div>
+                  <div>
+                    <div class="comp-label">Gemi IMO + Mavi Kart</div>
+                    <div class="comp-sub">Otomatik eşleştirilen gemi profili</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">📍</div>
+                  <div>
+                    <div class="comp-label">Liman Lokasyonu</div>
+                    <div class="comp-sub">İşlemin yapıldığı liman ve rıhtım bilgisi</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">💰</div>
+                  <div>
+                    <div class="comp-label">Otomatik Hesaplanan Tutar</div>
+                    <div class="comp-sub">Flowmetre × Birim Fiyat = Fatura</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: FİYATLANDIRMA -->
+    <div class="slide" id="s7">
+      <div class="bg"
+        style="background-image:url('https://plus.unsplash.com/premium_photo-1661879937750-3c071ab344a2?w=1920&q=80')">
+      </div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(0,60,50,.88),rgba(0,120,90,.75))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">💰 Fiyatlandırma Sistemi</span>
+            <h2>Kaçak Yok · Kayıp Yok<br><em>Tartışma Yok</em></h2>
+            <p class="lede">Geleneksel sistemlerde ücretlendirme tartışmaya açık ve manipülasyona elverişlidir.
+              Sistemimiz, yalnızca flowmetrenin ölçtüğü gerçek miktarı esas alır. İnsan eli değmez, hata olmaz,
+              anlaşmazlık çıkmaz.</p>
+            <div class="formula-box">
+              <div class="formula">Atık Türü Birim Fiyatı (₺/m³)<br>×<br><span>Flowmetre Ölçümü
+                  (m³)</span><br>=<br>Otomatik Hesaplanan Tutar</div>
+            </div>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">📏</div>
+                <div class="b-text">
+                  <div class="b-title">Kullanıma Göre Şeffaf Ücretlendirme</div>
+                  <div class="b-desc">Yalnızca gerçekten boşaltılan atık miktarı fatura edilir. Ne fazlası ne eksiği.
+                    Her iki taraf için adil ve tartışmasız.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🔒</div>
+                <div class="b-text">
+                  <div class="b-title">Değiştirilemez ve Denetlenebilir Kayıtlar</div>
+                  <div class="b-desc">Her işlem imzalı, zaman damgalı ve değiştirilemez olarak kayıt altına alınır.
+                    Bakanlık, Liman İdaresi ve Çevre Yetkilileri kayıtlara erişebilir.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🔗</div>
+                <div class="b-text">
+                  <div class="b-title">Fatura Sistemine API Entegrasyonu</div>
+                  <div class="b-desc">Mevcut liman fatura sisteminize API entegrasyonu ile otomatik fatura kesimi
+                    sağlanabilir. ERP/muhasebe uyumu desteklenmektedir.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Fiyatlandırma Avantajları</div>
+              <div class="feature-list">
+                <div class="fi">
+                  <div class="fi-icon">📈</div>
+                  <div>
+                    <div class="fi-title">Liman Gelirini Artırır</div>
+                    <div class="fi-desc">Kaçak boşaltımlar ve gizli kayıplar ortadan kalkar. Her m³ atık için gerçek
+                      gelir elde edilir.</div>
+                  </div>
+                </div>
+                <div class="fi">
+                  <div class="fi-icon">🤝</div>
+                  <div>
+                    <div class="fi-title">Gemi ile Güven İlişkisi Kurar</div>
+                    <div class="fi-desc">Şeffaf ölçüm sistemi sayesinde gemi operatörleri faturaya güvenir,
+                      anlaşmazlıklar tarihe karışır.</div>
+                  </div>
+                </div>
+                <div class="fi">
+                  <div class="fi-icon">⚡</div>
+                  <div>
+                    <div class="fi-title">Anlık Fatura Üretimi</div>
+                    <div class="fi-desc">İşlem tamamlanır tamamlanmaz tutar hesaplanır. Muhasebe bekleme süreleri sıfıra
+                      iner.</div>
+                  </div>
+                </div>
+                <div class="fi">
+                  <div class="fi-icon">🏛️</div>
+                  <div>
+                    <div class="fi-title">Bakanlık ve Denetim Uyumu</div>
+                    <div class="fi-desc">Çevre ve Şehircilik Bakanlığı standartlarıyla uyumlu kayıtlar. Denetim anında
+                      belgeleri sunar.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SLIDE 8: NE DEĞİŞTİRİR -->
+    <div class="slide" id="s8">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1618317497044-cf78ada06f92?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(160deg,rgba(0,40,80,.88),rgba(0,100,170,.74))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">🌊 Somut Fayda</span>
+            <h2>Bu Sistem <em>Neyi</em><br>Değiştirir?</h2>
+            <p class="lede">Daha temiz denizler, daha güçlü denetim, daha fazla gelir. Sistemimiz yalnızca bir yazılım
+              değil; liman operasyonlarını kökten dönüştüren, çevresel sorumluluğu dijital güvenceye kavuşturan ve
+              kurumsal şeffaflığı sağlayan bir altyapı çözümüdür.</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">🌊</div>
+                <div class="b-text">
+                  <div class="b-title">Deniz Ekosistemi Korunur</div>
+                  <div class="b-desc">Kaçak ve denetimsiz boşaltımlar gerçek zamanlı algılama ile engellenir. Her atık
+                    alımı kayıt altında olduğundan ihlaller mümkün olmaz.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🔍</div>
+                <div class="b-text">
+                  <div class="b-title">Denetim Anında ve Eksiksiz Yapılır</div>
+                  <div class="b-desc">Bakanlık, Sahil Güvenlik ve liman idaresi tüm işlemlere anlık erişebilir. Denetim
+                    için özel rapor hazırlamaya gerek kalmaz.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">📈</div>
+                <div class="b-text">
+                  <div class="b-title">Liman Geliri Artar, Kayıplar Sıfırlanır</div>
+                  <div class="b-desc">Şeffaf ölçüm ve otomatik fatura sayesinde kaçak ve eksik beyan kaynaklı gelir
+                    kayıpları tamamen ortadan kalkar.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🏛️</div>
+                <div class="b-text">
+                  <div class="b-title">Türkiye Akıllı Liman Altyapısına Katkı</div>
+                  <div class="b-desc">Uluslararası standartlara uygun dijital liman altyapısı oluşturulur. Yabancı gemi
+                    operatörlerine güven verir, rekabet avantajı sağlar.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Rakamlarla Fark</div>
+              <div class="stat-big">%<em>100</em></div>
+              <div class="stat-unit">Kağıtsız, Dijital Operasyon</div>
+              <div class="divider"></div>
+              <div class="mini-stats">
+                <div class="ms">
+                  <div class="ms-num">7/24</div>
+                  <div class="ms-label">Gerçek Zamanlı İzleme</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">%0</div>
+                  <div class="ms-label">Manuel Hata</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">∞</div>
+                  <div class="ms-label">Yıl Arşiv Erişimi</div>
+                </div>
+                <div class="ms">
+                  <div class="ms-num">3dk</div>
+                  <div class="ms-label">İşlem Tamamlama</div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.55">Sistem kurulduğu andan itibaren
+                tüm liman operasyonları dijital ortamda izlenebilir, raporlanabilir ve denetlenebilir hâle gelir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: MARPOL UYUMLULUK -->
+    <div class="slide" id="s9">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1606185540834-d6e7483ee1a4?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(0,60,40,.88),rgba(0,110,80,.75))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">🌿 Yasal Uyumluluk</span>
+            <h2>MARPOL Sözleşmesine<br><em>Tam Uyum</em></h2>
+            <p class="lede">MARPOL (Marine Pollution), uluslararası deniz kirliliğini önleme sözleşmesidir. Türkiye'de
+              tüm limanlarda bu sözleşme kapsamındaki atık alım beyanları zorunludur. Sistemimiz bu yükümlülüğü tamamen
+              dijital ve denetlenebilir bir şekilde karşılar.</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">🛢️</div>
+                <div class="b-text">
+                  <div class="b-title">MARPOL EK-I — Petrol Kökenli Atıklar</div>
+                  <div class="b-desc">Sintine suyu ve atık yağların tam takibi. Her boşaltım MARPOL Ek-I standardında
+                    dijital beyan olarak kaydedilir. Petrol içerikli atıklar özel kategoride izlenir.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">💧</div>
+                <div class="b-text">
+                  <div class="b-title">MARPOL EK-IV — Pis Su (Siyah Su)</div>
+                  <div class="b-desc">Gemi tuvaletleri ve kabin sistemlerinden kaynaklanan pis suların alım miktarı,
+                    kaynağı, transferin yapıldığı gemi ve tarih kayıt altına alınır.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">♻️</div>
+                <div class="b-text">
+                  <div class="b-title">MARPOL EK-V — Katı ve Gıda Atıkları</div>
+                  <div class="b-desc">Plastikler, yemek artıkları, evsel atıklar ve pişirme yağı ayrı kategorilerde
+                    takip edilir. Karma atık beyanları desteklenir.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">📑</div>
+                <div class="b-text">
+                  <div class="b-title">Otomatik Beyan Formu ve Dijital Arşiv</div>
+                  <div class="b-desc">Her işlem sonunda MARPOL uyumlu beyan formu otomatik oluşturulur. PDF ve Excel
+                    formatında indirilebilir. Yıllarca arşivde erişilebilir kalır.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Desteklenen Atık Kategorileri</div>
+              <div class="comp-row">
+                <div class="comp">
+                  <div class="comp-icon">🛢️</div>
+                  <div>
+                    <div class="comp-label">Sintine Suyu (EK-I)</div>
+                    <div class="comp-sub">Makine dairesinden kaynaklanan yağlı su karışımı</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🔧</div>
+                  <div>
+                    <div class="comp-label">Atık Yağ (EK-I)</div>
+                    <div class="comp-sub">Motor ve makine yağları, hidrolik akışkanlar</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">💧</div>
+                  <div>
+                    <div class="comp-label">Pis Su (EK-IV)</div>
+                    <div class="comp-sub">Kabin ve tuvalet kaynaklı siyah su</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🥤</div>
+                  <div>
+                    <div class="comp-label">Plastikler (EK-V)</div>
+                    <div class="comp-sub">Ambalaj, şişe ve sert plastik atıklar</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🍽️</div>
+                  <div>
+                    <div class="comp-label">Yemek Atıkları (EK-V)</div>
+                    <div class="comp-sub">Galley'den kaynaklanan organik atıklar</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🛒</div>
+                  <div>
+                    <div class="comp-label">Evsel Atıklar (EK-V)</div>
+                    <div class="comp-sub">Kuru çöp, kağıt, cam ve karışık evsel atıklar</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: GELECEK VİZYONU -->
+    <div class="slide" id="s10">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1670138981446-24be2030e46a?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(5,5,40,.88),rgba(0,50,120,.76))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">🚀 Gelecek Vizyonu</span>
+            <h2>Akıllı Limanlar İçin<br><em>Hazırız</em></h2>
+            <p class="lede">Mevcut sistem Türkiye'deki tüm ticari, yolcu ve balıkçı limanlarına uygulanabilecek şekilde
+              tasarlanmıştır. Bakanlık entegrasyonu, yapay zeka tabanlı analitik ve merkezi izleme sistemi ile
+              Türkiye'nin ulusal akıllı liman altyapısını birlikte kurmak için hazırız.</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">🗺️</div>
+                <div class="b-text">
+                  <div class="b-title">Türkiye Geneli Yaygınlaştırma</div>
+                  <div class="b-desc">Tüm ticari ve yolcu limanlarında standart bir dijital atık takip altyapısı
+                    kurulması. Merkezi MARPOL veri merkezi oluşturulması.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🤖</div>
+                <div class="b-text">
+                  <div class="b-title">Yapay Zeka ile Anomali Tespiti</div>
+                  <div class="b-desc">Makine öğrenmesi modelleri ile olağandışı boşaltım örüntüleri otomatik tespit
+                    edilir. Şüpheli durumlar anlık uyarı olarak iletilir.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🚨</div>
+                <div class="b-text">
+                  <div class="b-title">Gerçek Zamanlı Kaçak Tespit Sistemi</div>
+                  <div class="b-desc">Sensör verileri sürekli analiz edilir. Yetkisiz boşaltım girişimi anında tespit
+                    edilerek liman idaresi ve yetkili makamlar uyarılır.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🏛️</div>
+                <div class="b-text">
+                  <div class="b-title">Bakanlık ve Resmi Entegrasyon</div>
+                  <div class="b-desc">Çevre ve Şehircilik Bakanlığı sistemleriyle uyumlu veri paylaşımı. Otomatik
+                    bildirim, e-devlet entegrasyonu ve merkezi izleme.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Yol Haritası</div>
+              <div class="step-list">
+                <div class="sl">
+                  <div class="sl-num" style="background:linear-gradient(135deg,#22c55e,#16a34a)">✓</div>
+                  <div class="sl-content">
+                    <div class="sl-title">Faz 1 — Prototip Tamamlandı</div>
+                    <div class="sl-desc">Tescilli kriptolu haberleşme, donanımsal kimlik doğrulama, güvenli bulut entegrasyonu, web dashboard — hazır ve çalışır durumda.</div>
+                  </div>
+                </div>
+                <div class="sl">
+                  <div class="sl-num">2</div>
+                  <div class="sl-content">
+                    <div class="sl-title">Faz 2 — Pilot Liman Kurulumu</div>
+                    <div class="sl-desc">Seçilen bir limanda gerçek ortamda kurulum. Kullanıcı eğitimi, sistem ince
+                      ayarı ve canlı test süreci.</div>
+                  </div>
+                </div>
+                <div class="sl">
+                  <div class="sl-num">3</div>
+                  <div class="sl-content">
+                    <div class="sl-title">Faz 3 — Çoklu Liman Genişlemesi</div>
+                    <div class="sl-desc">Birden fazla limanda eş zamanlı yönetim. Liman bazlı raporlama ve
+                      karşılaştırmalı analitik.</div>
+                  </div>
+                </div>
+                <div class="sl">
+                  <div class="sl-num">4</div>
+                  <div class="sl-content">
+                    <div class="sl-title">Faz 4 — Bakanlık Entegrasyonu ve AI</div>
+                    <div class="sl-desc">Resmi API entegrasyonu, anomali tespiti modülleri ve ulusal MARPOL veri merkezi
+                      bağlantısı.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="tag">🌍 Ulusal Yaygınlaşma</span>
+                <span class="tag">🤖 AI Analitik</span>
+                <span class="tag">🔗 API Entegrasyon</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: WEB DASHBOARD -->
+    <div class="slide" id="s11">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80')"></div>
+      <div class="ov" style="background:linear-gradient(135deg,rgba(10,15,30,.9),rgba(0,40,90,.8))"></div>
+      <div class="cnt">
+        <div class="hybrid">
+          <div class="hl">
+            <span class="eyebrow">💻 Dijital Yönetim</span>
+            <h2>Tüm Kontrol<br><em>Web Dashboard'da</em></h2>
+            <p class="lede">Gemi operasyonlarını, anlık atık alımlarını ve geçmişe dönük MARPOL beyanlarını tek bir
+              merkezden yönetin. Modern, hızlı ve her cihazla uyumlu web arayüzü sayesinde limanınız her zaman elinizin
+              altında.</p>
+            <div class="bullets">
+              <div class="bullet">
+                <div class="b-dot">📊</div>
+                <div class="b-text">
+                  <div class="b-title">Canlı İzleme ve Aktif Operasyon</div>
+                  <div class="b-desc">O an yanaşan gemiyi, devam eden su transferini ve flowmetre verilerini eş zamanlı
+                    olarak ekranda görün.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">📋</div>
+                <div class="b-text">
+                  <div class="b-title">Gelişmiş Raporlama ve Dışa Aktarım</div>
+                  <div class="b-desc">İstediğiniz tarih aralığı veya gemiye göre filtreleme yapın. Sonuçları tek tıkla
+                    Excel veya PDF olarak indirin.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🚢</div>
+                <div class="b-text">
+                  <div class="b-title">Gemi ve Liman Veritabanı</div>
+                  <div class="b-desc">Bilinmeyen gemileri anında kaydedin. Mavi Kart, donatan ve IMO bilgilerini güvenle
+                    bulutta saklayın.</div>
+                </div>
+              </div>
+              <div class="bullet">
+                <div class="b-dot">🔐</div>
+                <div class="b-text">
+                  <div class="b-title">Rol Tabanlı Yetkilendirme</div>
+                  <div class="b-desc">Admin, Operatör ve İzleyici rolleriyle yetkisiz erişimi engelleyin. Her işlemin
+                    kimin tarafından yapıldığını takip edin.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr">
+            <div class="panel">
+              <div class="panel-title">Sistem Yetenekleri</div>
+              <div class="comp-row">
+                <div class="comp">
+                  <div class="comp-icon">📱</div>
+                  <div>
+                    <div class="comp-label">Mobil Uyumlu Tasarım</div>
+                    <div class="comp-sub">Tablet ve telefonlardan kusursuz erişim</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">🌙</div>
+                  <div>
+                    <div class="comp-label">Koyu / Açık Tema</div>
+                    <div class="comp-sub">Gece vardiyası için göz yormayan arayüz</div>
+                  </div>
+                </div>
+                <div class="comp">
+                  <div class="comp-icon">📦</div>
+                  <div>
+                    <div class="comp-label">Otomatik Yedekleme</div>
+                    <div class="comp-sub">Tüm veritabanının JSON formatında yedeği</div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="stat-big" style="font-size:2.2rem">Bulut <em>Senkronizasyonu</em></div>
+              <p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.55;margin-top:10px">Veriler Google
+                Firebase altyapısında barındırılır. Veri kaybı riski sıfırdır, erişim %99.9 oranında kesintisizdir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: ARAYÜZ MOCKUP -->
+    <div class="slide" id="s12">
+      <div class="bg" style="background-color:#0a0f1e"></div>
+      <div class="cnt"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px">
+        <div style="text-align:center;margin-bottom:36px">
+          <span class="eyebrow"
+            style="background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.4);color:#93c5fd">💻 Panel
+            İncelemesi</span>
+          <h2
+            style="font-size:clamp(2rem, 3.5vw, 2.6rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px">
+            Yönetim Paneline<br><em>Yakından Bakış</em></h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:600px;margin:0 auto">Liman görevlilerinin
+            kullanacağı web arayüzü; karmaşık süreçleri basitleştirir, kritik verileri tek ekranda toplar.</p>
+        </div>
+
+        <!-- MOCKUP BROWSER WINDOW -->
+        <div
+          style="width:100%;max-width:1100px;background:#1e293b;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.6)">
+          <!-- Browser Top Bar -->
+          <div
+            style="background:#0f172a;padding:12px 20px;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div style="width:12px;height:12px;border-radius:50%;background:#ef4444"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#f59e0b"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#22c55e"></div>
+          </div>
+          <!-- Mockup Layout -->
+          <div style="display:flex;height:480px">
+            <!-- Sidebar -->
+            <div
+              style="width:240px;background:#111827;border-right:1px solid rgba(255,255,255,0.05);padding:24px 20px;display:flex;flex-direction:column;gap:12px">
+              <div
+                style="color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+                🌊 Atık Su Takip</div>
+              <div
+                style="background:rgba(59,130,246,0.15);color:#60a5fa;padding:12px 16px;border-radius:10px;font-size:0.9rem;font-weight:700;display:flex;align-items:center;gap:10px">
+                📊 Dashboard</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📋 Raporlama</div>
+              <div
+                style="margin-top:16px;color:rgba(255,255,255,0.3);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;padding-left:16px">
+                Yönetim</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🚢 Gemi Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🏴 Liman Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                👥 Kullanıcılar</div>
+            </div>
+            <!-- Main Content -->
+            <div style="flex:1;padding:32px;background:#0a0f1e;display:flex;flex-direction:column;gap:24px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 style="color:#fff;font-size:1.6rem;font-weight:800">📊 Dashboard</h3>
+                <span
+                  style="background:rgba(34,197,94,0.15);color:#4ade80;padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:700;border:1px solid rgba(34,197,94,0.3)">☁️
+                  Bulut Bağlı</span>
+              </div>
+              <!-- KPIs -->
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+                <div
+                  style="background:#1e293b;padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.05);border-left:4px solid #3b82f6;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                  <div style="font-size:2rem;font-weight:800;color:#fff;line-height:1">24</div>
+                  <div style="font-size:0.8rem;color:#94a3b8;margin-top:6px">Bugünkü İşlemler</div>
+                </div>
+                <div
+                  style="background:#1e293b;padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.05);border-left:4px solid #10b981;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                  <div style="font-size:2rem;font-weight:800;color:#fff;line-height:1">186</div>
+                  <div style="font-size:0.8rem;color:#94a3b8;margin-top:6px">Bu Ay Toplam</div>
+                </div>
+                <div
+                  style="background:#1e293b;padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.05);border-left:4px solid #8b5cf6;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                  <div style="font-size:2rem;font-weight:800;color:#fff;line-height:1">42</div>
+                  <div style="font-size:0.8rem;color:#94a3b8;margin-top:6px">Kayıtlı Gemiler</div>
+                </div>
+                <div
+                  style="background:#1e293b;padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.05);border-left:4px solid #f59e0b;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                  <div style="font-size:1.6rem;font-weight:800;color:#fff;line-height:1;margin-top:4px">14:22</div>
+                  <div style="font-size:0.8rem;color:#94a3b8;margin-top:6px">Son İşlem</div>
+                </div>
+              </div>
+              <!-- Active Session Mock -->
+              <div
+                style="background:rgba(16,185,129,0.05);padding:24px;border-radius:16px;border:1px solid rgba(16,185,129,0.2);display:flex;gap:24px;align-items:center;margin-top:10px;box-shadow:0 4px 20px rgba(0,0,0,0.2)">
+                <div
+                  style="width:70px;height:70px;border-radius:50%;background:rgba(16,185,129,0.15);display:flex;align-items:center;justify-content:center;font-size:2rem;border:1px solid rgba(16,185,129,0.3)">
+                  🌊</div>
+                <div style="flex:1">
+                  <div
+                    style="display:inline-block;background:rgba(16,185,129,0.2);color:#4ade80;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:800;letter-spacing:1px;margin-bottom:8px">
+                    AKTİF OPERASYON</div>
+                  <div style="color:#fff;font-size:1.4rem;font-weight:800;margin-bottom:4px">M/V Kaptan Ali</div>
+                  <div style="color:#94a3b8;font-size:0.9rem">Mavi Kart: 34-123456 • Sentetik Atık (EK-I)</div>
+                </div>
+                <div
+                  style="background:#0f172a;padding:18px 32px;border-radius:12px;text-align:center;border:1px solid rgba(59,130,246,0.4);box-shadow:0 4px 15px rgba(0,0,0,0.3)">
+                  <div style="color:#60a5fa;font-size:0.8rem;font-weight:800;margin-bottom:6px">FLOWMETRE</div>
+                  <div style="color:#fff;font-size:2.2rem;font-weight:900;line-height:1">4.2 <span
+                      style="font-size:1.2rem;color:#94a3b8">m³</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SLIDE 13: RAPORLAMA MOCKUP -->
+    <div class="slide" id="s13">
+      <div class="bg" style="background-color:#0a0f1e"></div>
+      <div class="cnt"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px">
+        <div style="text-align:center;margin-bottom:36px">
+          <span class="eyebrow"
+            style="background:rgba(245,158,11,0.15);border-color:rgba(245,158,11,0.4);color:#fcd34d">📋 Geçmiş
+            Kayıtlar</span>
+          <h2
+            style="font-size:clamp(2rem, 3.5vw, 2.6rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px">
+            Detaylı Raporlama ve<br><em>Dışa Aktarım</em></h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:600px;margin:0 auto">Bakanlık bildirimleri ve
+            liman denetimleri için saniyeler içinde MARPOL uyumlu raporlar oluşturun.</p>
+        </div>
+
+        <!-- MOCKUP BROWSER WINDOW -->
+        <div
+          style="width:100%;max-width:1100px;background:#1e293b;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.6)">
+          <div
+            style="background:#0f172a;padding:12px 20px;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div style="width:12px;height:12px;border-radius:50%;background:#ef4444"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#f59e0b"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#22c55e"></div>
+          </div>
+          <div style="display:flex;height:480px">
+            <!-- Sidebar -->
+            <div
+              style="width:240px;background:#111827;border-right:1px solid rgba(255,255,255,0.05);padding:24px 20px;display:flex;flex-direction:column;gap:12px">
+              <div
+                style="color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+                🌊 Atık Su Takip</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📊 Dashboard</div>
+              <div
+                style="background:rgba(245,158,11,0.15);color:#fbbf24;padding:12px 16px;border-radius:10px;font-size:0.9rem;font-weight:700;display:flex;align-items:center;gap:10px">
+                📋 Raporlama</div>
+              <div
+                style="margin-top:16px;color:rgba(255,255,255,0.3);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;padding-left:16px">
+                Yönetim</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🚢 Gemi Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🏴 Liman Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                👥 Kullanıcılar</div>
+            </div>
+            <!-- Main Content -->
+            <div style="flex:1;padding:32px;background:#0a0f1e;display:flex;flex-direction:column;gap:24px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 style="color:#fff;font-size:1.6rem;font-weight:800">📋 Raporlama</h3>
+                <div style="display:flex;gap:12px">
+                  <span
+                    style="background:rgba(239,68,68,0.15);color:#f87171;padding:8px 16px;border-radius:8px;font-size:0.85rem;font-weight:700;border:1px solid rgba(239,68,68,0.3)">📄
+                    PDF Al</span>
+                  <span
+                    style="background:rgba(34,197,94,0.15);color:#4ade80;padding:8px 16px;border-radius:8px;font-size:0.85rem;font-weight:700;border:1px solid rgba(34,197,94,0.3)">📊
+                    Excel İndir</span>
+                </div>
+              </div>
+
+              <!-- Filters -->
+              <div
+                style="background:#1e293b;padding:16px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);display:flex;gap:16px">
+                <div
+                  style="flex:1;background:#0f172a;padding:10px 14px;border-radius:8px;color:#94a3b8;font-size:0.85rem;border:1px solid #334155">
+                  🚢 Gemi Filtrele...</div>
+                <div
+                  style="flex:1;background:#0f172a;padding:10px 14px;border-radius:8px;color:#94a3b8;font-size:0.85rem;border:1px solid #334155">
+                  📅 Başlangıç Tarihi</div>
+                <div
+                  style="flex:1;background:#0f172a;padding:10px 14px;border-radius:8px;color:#94a3b8;font-size:0.85rem;border:1px solid #334155">
+                  📅 Bitiş Tarihi</div>
+                <div
+                  style="background:#3b82f6;color:#fff;padding:10px 24px;border-radius:8px;font-size:0.85rem;font-weight:700">
+                  Ara</div>
+              </div>
+
+              <!-- Table Mock -->
+              <div
+                style="background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);flex:1;overflow:hidden;display:flex;flex-direction:column">
+                <div
+                  style="background:#0f172a;display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr 1fr;padding:12px 20px;color:#64748b;font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #334155">
+                  <div>Tarih / Saat</div>
+                  <div>Gemi Bilgisi</div>
+                  <div>Atık Türü</div>
+                  <div>Miktar</div>
+                  <div>Personel</div>
+                </div>
+                <div
+                  style="padding:16px 20px;display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr 1fr;color:#e2e8f0;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.05);align-items:center">
+                  <div><span style="color:#fff">12.05.2026</span><br><span
+                      style="color:#94a3b8;font-size:0.75rem">14:22:05</span></div>
+                  <div><span style="color:#60a5fa;font-weight:700">M/V Kaptan Ali</span><br><span
+                      style="color:#94a3b8;font-size:0.75rem">MK: 34-123456</span></div>
+                  <div>🛢️ Sintine (EK-I)</div>
+                  <div style="font-weight:700;color:#fff">4.2 m³</div>
+                  <div style="color:#94a3b8">B. Bulut</div>
+                </div>
+                <div
+                  style="padding:16px 20px;display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr 1fr;color:#e2e8f0;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.05);align-items:center;background:rgba(255,255,255,0.02)">
+                  <div><span style="color:#fff">12.05.2026</span><br><span
+                      style="color:#94a3b8;font-size:0.75rem">11:05:40</span></div>
+                  <div><span style="color:#60a5fa;font-weight:700">Gülce K.</span><br><span
+                      style="color:#94a3b8;font-size:0.75rem">MK: 34-987654</span></div>
+                  <div>💧 Pis Su (EK-IV)</div>
+                  <div style="font-weight:700;color:#fff">12.8 m³</div>
+                  <div style="color:#94a3b8">A. Yılmaz</div>
+                </div>
+                <div
+                  style="padding:16px 20px;display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr 1fr;color:#e2e8f0;font-size:0.85rem;align-items:center">
+                  <div><span style="color:#fff">11.05.2026</span><br><span
+                      style="color:#94a3b8;font-size:0.75rem">16:45:12</span></div>
+                  <div><span style="color:#60a5fa;font-weight:700">Deniz Yıldızı 3</span><br><span
+                      style="color:#94a3b8;font-size:0.75rem">MK: 34-456123</span></div>
+                  <div>♻️ Katı Atık (EK-V)</div>
+                  <div style="font-weight:700;color:#fff">-</div>
+                  <div style="color:#94a3b8">B. Bulut</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: GEMİ YÖNETİMİ MOCKUP -->
+    <div class="slide" id="s14">
+      <div class="bg" style="background-color:#0a0f1e"></div>
+      <div class="cnt"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px">
+        <div style="text-align:center;margin-bottom:36px">
+          <span class="eyebrow"
+            style="background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.4);color:#c4b5fd">🚢
+            Yetkilendirme</span>
+          <h2
+            style="font-size:clamp(2rem, 3.5vw, 2.6rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px">
+            Gemi Kayıt ve<br><em>Kimlik Eşleştirme</em></h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:600px;margin:0 auto">Kriptolu güvenlik modüllerini gemilerle dijital olarak eşleştirin. Donatan, IMO ve Mavi Kart bilgilerini tek merkezden yönetin.
+          </p>
+        </div>
+
+        <div
+          style="width:100%;max-width:1100px;background:#1e293b;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.6)">
+          <div
+            style="background:#0f172a;padding:12px 20px;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div style="width:12px;height:12px;border-radius:50%;background:#ef4444"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#f59e0b"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#22c55e"></div>
+          </div>
+          <div style="display:flex;height:480px">
+            <div
+              style="width:240px;background:#111827;border-right:1px solid rgba(255,255,255,0.05);padding:24px 20px;display:flex;flex-direction:column;gap:12px">
+              <div
+                style="color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+                🌊 Atık Su Takip</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📊 Dashboard</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📋 Raporlama</div>
+              <div
+                style="margin-top:16px;color:rgba(255,255,255,0.3);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;padding-left:16px">
+                Yönetim</div>
+              <div
+                style="background:rgba(139,92,246,0.15);color:#a78bfa;padding:12px 16px;border-radius:10px;font-size:0.9rem;font-weight:700;display:flex;align-items:center;gap:10px">
+                🚢 Gemi Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🏴 Liman Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                👥 Kullanıcılar</div>
+            </div>
+
+            <div style="flex:1;padding:32px;background:#0a0f1e;display:flex;flex-direction:column;gap:24px">
+              <h3 style="color:#fff;font-size:1.6rem;font-weight:800">🚢 Gemi Yönetimi</h3>
+              <div style="display:flex;gap:24px;height:100%">
+                <!-- Ship List -->
+                <div
+                  style="flex:1.2;background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;overflow:hidden">
+                  <div
+                    style="background:#0f172a;padding:16px 20px;font-size:0.9rem;font-weight:700;color:#fff;border-bottom:1px solid #334155">
+                    Kayıtlı Gemiler</div>
+                  <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                    <div style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:4px">M/V Kaptan Ali</div>
+                    <div style="color:#94a3b8;font-size:0.75rem;display:flex;justify-content:space-between"><span>MK:
+                        34-123456</span><span style="color:#4ade80">ID: E2 00 40 12</span></div>
+                  </div>
+                  <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                    <div style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:4px">Gülce K.</div>
+                    <div style="color:#94a3b8;font-size:0.75rem;display:flex;justify-content:space-between"><span>MK:
+                        34-987654</span><span style="color:#4ade80">ID: A4 5F 88 1C</span></div>
+                  </div>
+                </div>
+                <!-- Form -->
+                <div
+                  style="flex:1;background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);padding:20px;display:flex;flex-direction:column;gap:16px">
+                  <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:4px">➕ Yeni Gemi Kaydı</div>
+
+                  <!-- Fake Input -->
+                  <div>
+                    <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">Güvenli Kimlik Kodlama (Kriptolu Modül Doğrulaması)</div>
+                    <div
+                      style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#4ade80;font-family:monospace;font-size:0.9rem;display:flex;justify-content:space-between">
+                      <span>B5 8E 2F 91</span><span style="font-size:0.8rem">🔒 Doğrulandı</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">Gemi Adı</div>
+                    <div
+                      style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#94a3b8;font-size:0.85rem">
+                      Poyraz - 1</div>
+                  </div>
+                  <div style="display:flex;gap:12px">
+                    <div style="flex:1">
+                      <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">Mavi Kart No</div>
+                      <div
+                        style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#94a3b8;font-size:0.85rem">
+                        34-775588</div>
+                    </div>
+                  </div>
+
+                  <div
+                    style="margin-top:auto;background:#8b5cf6;color:#fff;padding:12px;border-radius:8px;text-align:center;font-weight:700;font-size:0.9rem">
+                    Gemiyi Kaydet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: LİMAN YÖNETİMİ MOCKUP -->
+    <div class="slide" id="s15">
+      <div class="bg" style="background-color:#0a0f1e"></div>
+      <div class="cnt"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px">
+        <div style="text-align:center;margin-bottom:36px">
+          <span class="eyebrow"
+            style="background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.4);color:#f472b6">🏴 Merkezi
+            Kontrol</span>
+          <h2
+            style="font-size:clamp(2rem, 3.5vw, 2.6rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px">
+            Çoklu Liman ve<br><em>Bölge Yönetimi</em></h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:600px;margin:0 auto">Birden fazla limanı,
+            rıhtımı veya atık alım tesisini tek bir ekrandan kontrol edin. Sınır tanımayan merkezi izleme.</p>
+        </div>
+
+        <div
+          style="width:100%;max-width:1100px;background:#1e293b;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.6)">
+          <div
+            style="background:#0f172a;padding:12px 20px;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div style="width:12px;height:12px;border-radius:50%;background:#ef4444"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#f59e0b"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#22c55e"></div>
+          </div>
+          <div style="display:flex;height:480px">
+            <div
+              style="width:240px;background:#111827;border-right:1px solid rgba(255,255,255,0.05);padding:24px 20px;display:flex;flex-direction:column;gap:12px">
+              <div
+                style="color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+                🌊 Atık Su Takip</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📊 Dashboard</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📋 Raporlama</div>
+              <div
+                style="margin-top:16px;color:rgba(255,255,255,0.3);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;padding-left:16px">
+                Yönetim</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🚢 Gemi Yönetimi</div>
+              <div
+                style="background:rgba(236,72,153,0.15);color:#f472b6;padding:12px 16px;border-radius:10px;font-size:0.9rem;font-weight:700;display:flex;align-items:center;gap:10px">
+                🏴 Liman Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                👥 Kullanıcılar</div>
+            </div>
+
+            <div style="flex:1;padding:32px;background:#0a0f1e;display:flex;flex-direction:column;gap:24px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 style="color:#fff;font-size:1.6rem;font-weight:800">🏴 Liman Yönetimi</h3>
+                <span
+                  style="background:rgba(14,165,233,0.15);color:#38bdf8;padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:700;border:1px solid rgba(14,165,233,0.3)">2
+                  Liman</span>
+              </div>
+              <div style="display:flex;gap:24px;height:100%">
+                <div
+                  style="flex:1.5;background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;overflow:hidden">
+                  <div
+                    style="background:#0f172a;padding:16px 20px;font-size:0.9rem;font-weight:700;color:#fff;border-bottom:1px solid #334155">
+                    Kayıtlı Tesisler</div>
+                  <div
+                    style="padding:20px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center">
+                    <div>
+                      <div style="color:#fff;font-weight:800;font-size:1.05rem;margin-bottom:6px">Üsküdar Liman Bölgesi
+                      </div>
+                      <div style="color:#94a3b8;font-size:0.8rem">📍 İstanbul / Üsküdar • 1. Bölge Ana Atık Alım Tesisi
+                      </div>
+                    </div>
+                    <div
+                      style="background:rgba(239,68,68,0.15);color:#f87171;padding:6px 12px;border-radius:6px;font-size:0.75rem;font-weight:700">
+                      Sil</div>
+                  </div>
+                  <div
+                    style="padding:20px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center">
+                    <div>
+                      <div style="color:#fff;font-weight:800;font-size:1.05rem;margin-bottom:6px">Tuzla Tersanesi</div>
+                      <div style="color:#94a3b8;font-size:0.8rem">📍 İstanbul / Tuzla • Özel İşletme Alanı</div>
+                    </div>
+                    <div
+                      style="background:rgba(239,68,68,0.15);color:#f87171;padding:6px 12px;border-radius:6px;font-size:0.75rem;font-weight:700">
+                      Sil</div>
+                  </div>
+                </div>
+
+                <div
+                  style="flex:1;background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);padding:20px;display:flex;flex-direction:column;gap:16px">
+                  <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:4px">➕ Yeni Liman Ekle</div>
+                  <div>
+                    <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">Liman Adı</div>
+                    <div
+                      style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#94a3b8;font-size:0.85rem">
+                      Yenikapı İskelesi</div>
+                  </div>
+                  <div>
+                    <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">Konum</div>
+                    <div
+                      style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#94a3b8;font-size:0.85rem">
+                      İstanbul / Fatih</div>
+                  </div>
+
+                  <div
+                    style="margin-top:auto;background:#0ea5e9;color:#fff;padding:12px;border-radius:8px;text-align:center;font-weight:700;font-size:0.9rem">
+                    Limanı Kaydet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: KULLANICILAR MOCKUP -->
+    <div class="slide" id="s16">
+      <div class="bg" style="background-color:#0a0f1e"></div>
+      <div class="cnt"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px">
+        <div style="text-align:center;margin-bottom:36px">
+          <span class="eyebrow"
+            style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#34d399">👥 Güvenlik</span>
+          <h2
+            style="font-size:clamp(2rem, 3.5vw, 2.6rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px">
+            Rol Tabanlı Erişim ve<br><em>Kullanıcılar</em></h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:600px;margin:0 auto">Farklı erişim
+            seviyeleriyle yetkisiz müdahaleyi engelleyin. Admin, Operatör ve İzleyici rolleriyle tam güvenlik sağlayın.
+          </p>
+        </div>
+
+        <div
+          style="width:100%;max-width:1100px;background:#1e293b;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.6)">
+          <div
+            style="background:#0f172a;padding:12px 20px;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div style="width:12px;height:12px;border-radius:50%;background:#ef4444"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#f59e0b"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#22c55e"></div>
+          </div>
+          <div style="display:flex;height:480px">
+            <div
+              style="width:240px;background:#111827;border-right:1px solid rgba(255,255,255,0.05);padding:24px 20px;display:flex;flex-direction:column;gap:12px">
+              <div
+                style="color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+                🌊 Atık Su Takip</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📊 Dashboard</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                📋 Raporlama</div>
+              <div
+                style="margin-top:16px;color:rgba(255,255,255,0.3);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;padding-left:16px">
+                Yönetim</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🚢 Gemi Yönetimi</div>
+              <div
+                style="color:#94a3b8;padding:10px 16px;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:10px">
+                🏴 Liman Yönetimi</div>
+              <div
+                style="background:rgba(16,185,129,0.15);color:#34d399;padding:12px 16px;border-radius:10px;font-size:0.9rem;font-weight:700;display:flex;align-items:center;gap:10px">
+                👥 Kullanıcılar</div>
+            </div>
+
+            <div style="flex:1;padding:32px;background:#0a0f1e;display:flex;flex-direction:column;gap:24px">
+              <h3 style="color:#fff;font-size:1.6rem;font-weight:800">👥 Kullanıcı Yönetimi</h3>
+
+              <div style="display:flex;gap:24px;height:100%">
+                <div
+                  style="flex:1.5;background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);overflow:hidden;display:flex;flex-direction:column">
+                  <div
+                    style="background:#0f172a;display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:12px 20px;color:#64748b;font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #334155">
+                    <div>Personel</div>
+                    <div>Görev / Liman</div>
+                    <div>Rol</div>
+                  </div>
+                  <div
+                    style="padding:16px 20px;display:grid;grid-template-columns:1.5fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.05);align-items:center">
+                    <div>
+                      <div style="color:#fff;font-weight:700;font-size:0.95rem">Batu Bulut</div>
+                      <div style="color:#94a3b8;font-size:0.75rem">admin@liman.com</div>
+                    </div>
+                    <div style="color:#e2e8f0;font-size:0.85rem">-</div>
+                    <div><span
+                        style="background:rgba(139,92,246,0.15);color:#c4b5fd;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700">ADMİN</span>
+                    </div>
+                  </div>
+                  <div
+                    style="padding:16px 20px;display:grid;grid-template-columns:1.5fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.05);align-items:center;background:rgba(255,255,255,0.02)">
+                    <div>
+                      <div style="color:#fff;font-weight:700;font-size:0.95rem">Ahmet Yılmaz</div>
+                      <div style="color:#94a3b8;font-size:0.75rem">ahmet@liman.com</div>
+                    </div>
+                    <div style="color:#e2e8f0;font-size:0.85rem">Üsküdar Liman</div>
+                    <div><span
+                        style="background:rgba(59,130,246,0.15);color:#60a5fa;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700">OPERATÖR</span>
+                    </div>
+                  </div>
+                  <div style="padding:16px 20px;display:grid;grid-template-columns:1.5fr 1fr 1fr;align-items:center">
+                    <div>
+                      <div style="color:#fff;font-weight:700;font-size:0.95rem">Sahil Güvenlik</div>
+                      <div style="color:#94a3b8;font-size:0.75rem">denetim@sg.gov.tr</div>
+                    </div>
+                    <div style="color:#e2e8f0;font-size:0.85rem">-</div>
+                    <div><span
+                        style="background:rgba(100,116,139,0.15);color:#94a3b8;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700">İZLEYİCİ</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="flex:1;background:#1e293b;border-radius:12px;border:1px solid rgba(255,255,255,0.05);padding:20px;display:flex;flex-direction:column;gap:16px">
+                  <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:4px">➕ Yeni Kullanıcı</div>
+                  <div>
+                    <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">E-posta</div>
+                    <div
+                      style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#94a3b8;font-size:0.85rem">
+                      yeni@liman.com</div>
+                  </div>
+                  <div>
+                    <div style="color:#94a3b8;font-size:0.75rem;margin-bottom:6px">Yetki Seviyesi</div>
+                    <div
+                      style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#4ade80;font-size:0.85rem;font-weight:700">
+                      Operatör (Kayıt Yetkisi)</div>
+                  </div>
+                  <div
+                    style="margin-top:auto;background:#10b981;color:#fff;padding:12px;border-radius:8px;text-align:center;font-weight:700;font-size:0.9rem">
+                    Oluştur</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SLIDE 17: KAPANIŞ -->
+    <div class="slide" id="s17">
+      <div class="bg"
+        style="background-image:url('https://images.unsplash.com/photo-1614568111194-3c251800e81e?w=1920&q=80')"></div>
+      <div class="ov"
+        style="background:linear-gradient(160deg,rgba(0,40,90,.82),rgba(0,110,170,.68),rgba(0,170,210,.55))"></div>
+      <div class="cnt" style="display:flex;justify-content:center">
+        <div class="close-cnt">
+          <div class="cover-badge" style="margin-bottom:24px">🌊 Derin Otomasyon — 2026</div>
+          <div class="close-title">Kontrol Sizde,<br><em>Deniz Temiz.</em></div>
+          <p class="close-sub">Bu sistem ile atık yönetimi kontrol altına alınır, deniz ekosistemi korunur ve liman
+            gelirleri şeffaflıkla artırılır. Türkiye'nin akıllı liman dönüşümünde öncü olmaya hazır mısınız?</p>
+          <div class="close-chips">
+            <span class="cc">✅ %100 Dijital Kayıt</span>
+            <span class="cc">⏱️ 7/24 Gerçek Zamanlı İzleme</span>
+            <span class="cc">🌿 MARPOL Uyumlu</span>
+            <span class="cc">🔒 Değiştirilemez Arşiv</span>
+            <span class="cc">📡 Kablosuz Altyapı</span>
+          </div>
+          <div class="close-btns">
+            <button class="btn-a" onclick="goTo(0)">🔄 Sunumu Yeniden Başlat</button>
+            <button class="btn-b" onclick="window.print()">📄 PDF Olarak Kaydet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+
+  <nav class="nav" id="navEl">
+    <button class="nbtn" onclick="go(-1)">&#8592;</button>
+    <div id="dots" style="display:flex;gap:8px"></div>
+    <button class="nbtn" onclick="go(1)">&#8594;</button>
+  </nav>
+
+  <script>
+    var cur = 0, tot = 17;
+    var slides = document.querySelectorAll('.slide');
+    var prog = document.getElementById('prog');
+    var ctr = document.getElementById('ctr');
+    var dotsEl = document.getElementById('dots');
+    for (var i = 0; i < tot; i++) {
+      var d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.dataset.i = i;
+      d.addEventListener('click', function () { goTo(+this.dataset.i); });
+      dotsEl.appendChild(d);
+    }
+    function goTo(n) {
+      slides[cur].classList.remove('active');
+      cur = Math.max(0, Math.min(n, tot - 1));
+      slides[cur].classList.add('active');
+      document.querySelectorAll('.dot').forEach(function (d, i) { d.classList.toggle('active', i === cur); });
+      prog.style.width = ((cur + 1) / tot * 100) + '%';
+      ctr.textContent = (cur + 1) + ' / ' + tot;
+    }
+    function go(d) { goTo(cur + d); }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(1);
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+      if (e.key === 'Escape') goTo(0);
+    });
+    var tx = 0;
+    document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+    document.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+    prog.style.width = (1 / tot * 100) + '%';
+
+    // TAM EKRAN (Fullscreen API) KODLARI
+    var fsBtn = document.getElementById('fullscreenBtn');
+    function toggleFullscreen() {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+        var el = document.documentElement;
+        if (el.requestFullscreen) {
+          el.requestFullscreen();
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.mozRequestFullScreen) {
+          el.mozRequestFullScreen();
+        } else if (el.msRequestFullscreen) {
+          el.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+    }
+    if (fsBtn) {
+      fsBtn.addEventListener('click', toggleFullscreen);
+    }
+
+    function updateFullscreenButton() {
+      var isFS = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+      if (fsBtn) {
+        fsBtn.innerHTML = isFS ? '📴 Normal Ekran' : '📺 Tam Ekran';
+      }
+    }
+    document.addEventListener('fullscreenchange', updateFullscreenButton);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+    document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+    document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+  </script>
+</body>
+
+</html>
